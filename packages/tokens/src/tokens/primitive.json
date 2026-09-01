@@ -1,0 +1,78 @@
+{
+  "$description": "Raw values. Do not use in production code directly.",
+  "color": {
+    "$type": "color",
+    "neutral": {
+      "0": { "$value": "#ffffff" },
+      "50": { "$value": "#f8f8f7" },
+      "100": { "$value": "#f0efec" },
+      "200": { "$value": "#e2e0da" },
+      "300": { "$value": "#c9c6bd" },
+      "400": { "$value": "#a3a099" },
+      "500": { "$value": "#7c7973" },
+      "600": { "$value": "#5c5a55" },
+      "700": { "$value": "#42403c" },
+      "800": { "$value": "#2b2a27" },
+      "900": { "$value": "#1a1917" }
+    },
+    "indigo": {
+      "100": { "$value": "#e0e0fb" },
+      "300": { "$value": "#a9a6f0" },
+      "500": { "$value": "#6b63d6" },
+      "600": { "$value": "#544bb8" },
+      "700": { "$value": "#413a94" }
+    },
+    "red": {
+      "100": { "$value": "#fbdedd" },
+      "500": { "$value": "#d94a45" },
+      "600": { "$value": "#b53a36" },
+      "700": { "$value": "#8f2c29" }
+    },
+    "green": {
+      "100": { "$value": "#d9f0e2" },
+      "500": { "$value": "#3d9968" },
+      "600": { "$value": "#2f7b53" },
+      "700": { "$value": "#245f40" }
+    },
+    "amber": {
+      "100": { "$value": "#fbecd2" },
+      "500": { "$value": "#c98a1e" },
+      "600": { "$value": "#a36e15" },
+      "700": { "$value": "#7d5410" }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "0": { "$value": "0px" },
+    "1": { "$value": "4px" },
+    "2": { "$value": "8px" },
+    "3": { "$value": "12px" },
+    "4": { "$value": "16px" },
+    "5": { "$value": "24px" },
+    "6": { "$value": "32px" },
+    "7": { "$value": "48px" },
+    "8": { "$value": "64px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "none": { "$value": "0px" },
+    "sm": { "$value": "4px" },
+    "md": { "$value": "8px" },
+    "lg": { "$value": "12px" },
+    "full": { "$value": "9999px" }
+  },
+  "fontSize": {
+    "$type": "dimension",
+    "xs": { "$value": "12px" },
+    "sm": { "$value": "14px" },
+    "base": { "$value": "16px" },
+    "lg": { "$value": "18px" },
+    "xl": { "$value": "22px" },
+    "2xl": { "$value": "28px" }
+  },
+  "fontWeight": {
+    "$type": "fontWeight",
+    "regular": { "$value": 400 },
+    "medium": { "$value": 500 }
+  }
+}

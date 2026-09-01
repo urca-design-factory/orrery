@@ -1,0 +1,44 @@
+{
+  "$description": "Meaningful layer. The product code uses only these.",
+  "color": {
+    "$type": "color",
+    "bg": {
+      "canvas": { "$value": "{color.neutral.50}" },
+      "surface": { "$value": "{color.neutral.0}" },
+      "raised": { "$value": "{color.neutral.100}" },
+      "inverse": { "$value": "{color.neutral.900}" }
+    },
+    "fg": {
+      "primary": { "$value": "{color.neutral.900}" },
+      "secondary": { "$value": "{color.neutral.600}" },
+      "muted": { "$value": "{color.neutral.500}" },
+      "inverse": { "$value": "{color.neutral.0}" },
+      "onAccent": { "$value": "{color.neutral.0}" }
+    },
+    "border": {
+      "default": { "$value": "{color.neutral.200}" },
+      "strong": { "$value": "{color.neutral.300}" },
+      "focus": { "$value": "{color.indigo.500}" }
+    },
+    "accent": {
+      "default": { "$value": "{color.indigo.500}" },
+      "hover": { "$value": "{color.indigo.600}" },
+      "active": { "$value": "{color.indigo.700}" },
+      "subtle": { "$value": "{color.indigo.100}" }
+    },
+    "danger": {
+      "default": { "$value": "{color.red.500}" },
+      "hover": { "$value": "{color.red.600}" },
+      "active": { "$value": "{color.red.700}" },
+      "subtle": { "$value": "{color.red.100}" }
+    },
+    "success": {
+      "default": { "$value": "{color.green.500}" },
+      "subtle": { "$value": "{color.green.100}" }
+    },
+    "warning": {
+      "default": { "$value": "{color.amber.500}" },
+      "subtle": { "$value": "{color.amber.100}" }
+    }
+  }
+}
