@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "noEmit": true, "verbatimModuleSyntax": false },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
