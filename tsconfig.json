@@ -3,6 +3,8 @@
   "references": [
     { "path": "./packages/tokens" },
     { "path": "./packages/ui" },
+    { "path": "./packages/analyzer" },
+    { "path": "./packages/mcp-server" },
     { "path": "./apps/demo" }
   ]
 }

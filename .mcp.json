@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "orrery": {
+      "command": "pnpm",
+      "args": [
+        "--filter",
+        "@orrery/mcp-server",
+        "exec",
+        "tsx",
+        "src/server.ts"
+      ],
+      "env": {
+        "ORRERY_ROOT": "."
+      }
+    }
+  }
+}
