@@ -11,12 +11,15 @@
     "./theme.css": "./dist/theme.css",
     "./tokens.json": "./dist/tokens.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsx scripts/build.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^22.20.1",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   }
