@@ -73,3 +73,12 @@ if (incomplete.length > 0) {
     `  ${incomplete.length} record(s) incomplete due to spread props`,
   );
 }
+
+const blocking = findings.filter(
+  (f) => f.severity === "error" && !f.location.file.startsWith("apps/demo/"),
+);
+
+if (blocking.length > 0) {
+  console.error(`\n${blocking.length} blocking finding(s).`);
+  process.exit(1);
+}
