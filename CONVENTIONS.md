@@ -32,7 +32,7 @@ Each rule carries one of three tags:
 **P-02** `[auto]` Every component extends the native props of its root element (`extends React.ComponentPropsWithoutRef<"button">`).
 **P-03** `[auto]` Every component forwards `ref` to its root DOM element.
 **P-04** `[auto]` Defaults for `variant` and `size` are declared in the CVA config via `defaultVariants`, not in JSX.
-**P-05** `[llm]` Content is passed as `children`, not through props. Avoid string props like `label`, `text`, or `content`.
+**P-05** `[llm]` A component's main content is passed as `children`, not as a string prop. The test is whether the caller could have written the value as markup: if yes, it belongs in `children`. Text that populates a specific semantic element the component owns (a `<label>` paired with `htmlFor`, a `placeholder`, an `aria-label`, an image `alt`) is not main content and is fine as a prop, and neither are `ReactNode` props for secondary slots (`icon`, `trailing`, `action`) alongside a real `children`. A documented reason for using a string prop does not create an exception.
 **P-06** `[llm]` A component carrying more than five visual variation props should be split into composable parts.
 **P-07** `[auto]` The `className` prop is accepted and merged via `cn()`; it is never ignored or assigned directly.
 
@@ -58,7 +58,8 @@ Each rule carries one of three tags:
 ---
 
 ## C — Composition
-**C-01** `[llm]` A component requiring more than three levels of nested configuration is split into subcomponents (`Card` / `CardHeader` / `CardBody`).
+
+**C-01** `[llm]` When a component's props cluster into named groups that each describe a distinct region of its markup — `headerTitle`, `headerAction`, `footerLabel` — those regions become subcomponents (`Card` / `CardHeader` / `CardBody`) instead of prefixed props.
 **C-02** `[auto]` Subcomponents are defined in the parent component's file and their names start with the parent's name.
 **C-03** `[llm]` Before adding a new component, evaluate whether an existing one could solve the problem with an added prop.
 **C-04** `[manual]` A component is not promoted into `@orrery/ui` until it has appeared in three separate places in the same form.
@@ -66,6 +67,7 @@ Each rule carries one of three tags:
 ---
 
 ## D — Documentation
+
 **D-01** `[auto]` Every exported component carries a TSDoc description.
 **D-02** `[auto]` Every public prop carries a TSDoc line.
 **D-03** `[auto]` Deprecated props are marked with `@deprecated` and state what replaces them.
