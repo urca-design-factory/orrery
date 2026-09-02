@@ -5,11 +5,11 @@ correct check.
 
 | File          | Rule | Violation                                          |
 | ------------- | ---- | -------------------------------------------------- |
-| Settings.tsx  | S-01 | raw hex in `style` attribute                       |
-| Settings.tsx  | S-04 | `style` attribute used for static values           |
-| Settings.tsx  | S-02 | arbitrary values `gap-[13px]`, `text-[#6b63d6]`    |
-| Dashboard.tsx | S-03 | overrides `Button` colors via `className`          |
-| Dashboard.tsx | S-05 | applies `mb-4` margin to a DS component            |
-| Dashboard.tsx | —    | repeated card markup, 3× (promotion candidate)     |
-| Reports.tsx   | —    | aliased import (`Button as Btn`) — resolution test |
-| Reports.tsx   | —    | spread props — incomplete-record test              |
+| Settings  | S-01 | raw hex in `style` attribute                       |
+| Settings  | S-04 | `style` attribute used for static values           |
+| Settings  | S-02 | arbitrary values `gap-[13px]`, `text-[#6b63d6]`    |
+| Dashboard | S-03 | overrides `Button` colors via `className`          |
+| Dashboard | S-05 | applies `mb-4` margin to a DS component            |
+| Dashboard | —    | repeated card markup, 3× (promotion candidate)     |
+| Reports   | —    | aliased import (`Button as Btn`) — resolution test |
+| Reports   | —    | spread props — incomplete-record test              |
