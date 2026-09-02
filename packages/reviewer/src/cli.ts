@@ -91,11 +91,8 @@ for (const file of files) {
     const findings = await reviewFile(source, file, llmRules);
     reviews.push({ file, findings, error: null });
   } catch (error) {
-    reviews.push({
-      file,
-      findings: [],
-      error: (error as Error).message.split("\n")[0],
-    });
+    const summary = (error as Error).message.split("\n")[0] ?? "Unknown error";
+    reviews.push({ file, findings: [], error: summary });
   }
 }
 
