@@ -8,7 +8,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/cn";
 
 const content = cva(
-  "fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col gap-4 rounded-lg border border-border-default bg-bg-surface p-6 outline-none focus-visible:ring-2 focus-visible:ring-border-focus",
+  "fixed left-1/2 top-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col gap-4 rounded-lg border border-border-default bg-bg-surface p-[26px] outline-none focus-visible:ring-2 focus-visible:ring-border-focus",
   {
     variants: {
       size: {
@@ -93,11 +93,12 @@ DialogDescription.displayName = "DialogDescription";
 /** The action row at the bottom of a Dialog. */
 export const DialogFooter = forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<"div">
+  ComponentPropsWithoutRef<"div">
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex justify-end gap-2", className)}
+    className={cn("flex justify-end gap-2 border-t pt-4", className)}
+    style={{ borderTopColor: "#e2e0da" }}
     {...props}
   />
 ));

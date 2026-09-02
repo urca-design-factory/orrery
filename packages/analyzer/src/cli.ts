@@ -6,7 +6,7 @@ import {
   classifyFile,
 } from "./program.js";
 import { runConsumerPass } from "./passes/consumer.js";
-import type { OrreryIndex } from "./types.js";
+import type { OrreryIndex, FindingRecord } from "./types.js";
 import { runProducerPass } from "./passes/producer.js";
 import { runRules } from "./rules/index.js";
 import { findClusters } from "./cluster.js";
@@ -53,6 +53,47 @@ console.log(
   `✓ ${components.length} components, ${usages.length} usages, ${findings.length} findings → artifacts/index.json`,
 );
 
+function renderMarkdown(blocking: FindingRecord[], exempted: number): string {
+  if (blocking.length === 0) {
+    return [
+      "### Analyzer",
+      "",
+      `No blocking violations. ${exempted} finding(s) exempted as declared fixtures.`,
+    ].join("\n");
+  }
+
+  const byFile = new Map<string, FindingRecord[]>();
+  for (const f of blocking) {
+    const list = byFile.get(f.location.file) ?? [];
+    list.push(f);
+    byFile.set(f.location.file, list);
+  }
+
+  const lines = [
+    "### Analyzer",
+    "",
+    `${blocking.length} blocking violation(s) of the \`[auto]\` rules in \`CONVENTIONS.md\`.`,
+    "",
+  ];
+
+  for (const [file, findings] of byFile) {
+    lines.push(`**\`${file}\`**`, "");
+    for (const f of findings) {
+      lines.push(`- \`${f.rule}\` (line ${f.location.line}) — ${f.message}`);
+    }
+    lines.push("");
+  }
+
+  lines.push(
+    "---",
+    "",
+    "These rules are checked deterministically — no model is involved, so these",
+    "findings are not advisory. Fix them or declare them in `FIXTURES.md`.",
+  );
+
+  return lines.join("\n");
+}
+
 for (const f of findings) {
   console.log(
     `  ${f.rule}  ${f.location.file}:${f.location.line}  ${f.message}`,
@@ -84,6 +125,13 @@ const blocking = findings.filter(
   (f) => f.severity === "error" && !isExempt(fixtures, f.rule, f.location.file),
 );
 
+const exempted = findings.filter(
+  (f) => f.severity === "error" && isExempt(fixtures, f.rule, f.location.file),
+).length;
+
+const markdownPath = resolve(outDir, "analysis.md");
+writeFileSync(markdownPath, renderMarkdown(blocking, exempted));
+
 if (blocking.length > 0) {
   console.error(`\n${blocking.length} blocking finding(s):`);
   for (const f of blocking) {
@@ -94,6 +142,4 @@ if (blocking.length > 0) {
   process.exit(1);
 }
 
-console.log(
-  `\n${findings.length - blocking.length} finding(s) exempted as declared fixtures.`,
-);
+console.log(`\n${exempted} finding(s) exempted as declared fixtures.`);
