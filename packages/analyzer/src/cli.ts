@@ -10,6 +10,7 @@ import type { OrreryIndex } from "./types.js";
 import { runProducerPass } from "./passes/producer.js";
 import { runRules } from "./rules/index.js";
 import { findClusters } from "./cluster.js";
+import { loadFixtures, isExempt } from "./fixtures.js";
 
 const tsconfigPath = resolve(process.cwd(), "../../apps/demo/tsconfig.json");
 const { program, checker, workspaceRoot } = createAnalyzerProgram(tsconfigPath);
@@ -74,11 +75,25 @@ if (incomplete.length > 0) {
   );
 }
 
+const fixtures = loadFixtures([
+  resolve(workspaceRoot, "packages/ui/FIXTURES.md"),
+  resolve(workspaceRoot, "apps/demo/FIXTURES.md"),
+]);
+
 const blocking = findings.filter(
-  (f) => f.severity === "error" && !f.location.file.startsWith("apps/demo/"),
+  (f) => f.severity === "error" && !isExempt(fixtures, f.rule, f.location.file),
 );
 
 if (blocking.length > 0) {
-  console.error(`\n${blocking.length} blocking finding(s).`);
+  console.error(`\n${blocking.length} blocking finding(s):`);
+  for (const f of blocking) {
+    console.error(
+      `  ${f.rule}  ${f.location.file}:${f.location.line}  ${f.message}`,
+    );
+  }
   process.exit(1);
 }
+
+console.log(
+  `\n${findings.length - blocking.length} finding(s) exempted as declared fixtures.`,
+);
